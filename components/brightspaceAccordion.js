@@ -49,7 +49,7 @@ button.accordion:after {
 
   applyTemplate() {
     //get the JSON from the template body
-    this.jsonData = JSON.parse(this.querySelector("template").innerHTML.trim());
+    this.jsonData = JSON.parse(this.querySelector("script").innerHTML.trim());
 
     //connect the button events to this
     this.openAccordion = this.openAccordion.bind(this);

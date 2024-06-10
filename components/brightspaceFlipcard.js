@@ -57,7 +57,7 @@ export default class BrightspaceFlipcard extends HTMLElement {
 
   applyTemplate() {
     //get the JSON from the template body
-    this.jsonData = JSON.parse(this.querySelector("template").innerHTML.trim());
+    this.jsonData = JSON.parse(this.querySelector("script").innerHTML.trim());
 
     //after the data has been loaded, render the HTML
     this.shadowRoot.innerHTML = this.render();

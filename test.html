@@ -2,33 +2,31 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script defer type="module" src="https://brightspace-ekkebus-4ea3c9baa444eebe7083edcfbfe011f75df50590ce1.gitlab.io/components.js"></script>
-    <!--
     <script defer type="module" src="./components.js"></script>
-    
-    
+    <!--
+    <script defer type="module" src="https://cdn.jsdelivr.net/gh/ekkebus/brightspace@main/components.js"></script>
     -->
   </head>
   <body>
     <h1>Test</h1>
     <brightspace-accordion>
-      <template lang="application/json">
+      <script type="application/json">
         { "groupName": "accountabilities", "elements": [ 
         { "name": "ProductOwner", "label": "👨‍💻 Product Owner", "content": "<p>123</p>" },
         { "name": "Developers", "label": "👷👷🏽‍♀️ Developers", "content": "<p>456</p>" },
         { "name": "ScrumMaster", "label": "👩🏻‍🏫 Scrum Master", "content": "<p>789</p>" }
         ] }
-      </template>
+      </script>
     </brightspace-accordion>
     <brightspace-flipcard>
-      <template lang="application/json">
+      <script type="application/json">
         { "elements": [ 
         { "front": "<p>👨‍💻 Product Owner</p>", "back": "<p>123</p>" },
         { "front": "<p>👷👷🏽‍♀️ Developers</p>", "back": "<p>456</p>" },
         { "front": "<p>👩🏻‍🏫 Scrum Master</p>", "back": "<p>789</p>" },
         { "front": "<p>Stakeholder</p>", "back": "<p>000</p>" }
         ] }
-      </template>
+      </script>
     </brightspace-flipcard>
   </body>
 </html>
