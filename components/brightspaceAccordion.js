@@ -1,6 +1,11 @@
 export default class BrightspaceAccordion extends HTMLElement {
   shadowRoot;
-  jsonData;
+  jsonData = `
+  { "groupName": "accountabilities", 
+    "elements": [ 
+      { "name": "item1", "label": "Label 1", "content": "Content 1" },
+      { "name": "item2", "label": "Label 2", "content": "Content 2" }
+   ] }`;
   style = `
   .accordion {
     background-color: #eee;
@@ -40,17 +45,24 @@ button.accordion:after {
   constructor() {
     super();
     this.shadowRoot = this.attachShadow({ mode: "open" });
-
   }
 
   connectedCallback() {
     this.applyTemplate();
   }
 
-  applyTemplate() {
-    //get the JSON from the template body
-    this.jsonData = JSON.parse(this.children[0].innerHTML.trim());
+  static get observedAttributes() {
+    return ["data-content"];
+  }
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "data-content") {
+      this.jsonData = JSON.parse(newValue);
+      this.render();
+    }
+  }
+
+  applyTemplate() {
     //connect the button events to this
     this.openAccordion = this.openAccordion.bind(this);
     //add event listner

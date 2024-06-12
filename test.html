@@ -9,17 +9,9 @@
   </head>
   <body>
     <h1>Test</h1>
-    <brightspace-accordion>
-      <script type="application/json" id="brightspace-accordion-data">
-        { "groupName": "accountabilities", "elements": [ 
-        { "name": "ProductOwner", "label": "👨‍💻 Product Owner", "content": "<p>123</p>" },
-        { "name": "Developers", "label": "👷👷🏽‍♀️ Developers", "content": "<p>456</p>" },
-        { "name": "ScrumMaster", "label": "👩🏻‍🏫 Scrum Master", "content": "<p>789</p>" }
-        ] }
-      </script>
+    <brightspace-accordion data-content='{ "groupName": "accountabilities", "elements": [ { "name": "ProductOwner", "label": "👨‍💻 Product Owner", "content": "123" },{ "name": "Developers", "label": "👷👷🏽‍♀️ Developers", "content": "456" },{ "name": "ScrumMaster", "label": "👩🏻‍🏫 Scrum Master", "content": "789" }] }'>
     </brightspace-accordion>
     <brightspace-flipcard data-content='{ "cards": [ { "front": "👨‍💻 Product Owner", "back": "123" },{ "front": "👷👷🏽‍♀️ Developers", "back": "456" },{ "front": "👩🏻‍🏫 Scrum Master", "back": "789" }] }'>
-      
     </brightspace-flipcard>
   </body>
 </html>

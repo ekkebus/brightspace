@@ -7,5 +7,4 @@ customElements.define("brightspace-accordion", brightspaceAccordion);
 customElements.define("brightspace-flipcard", brightspaceFlipcard);
 
 
-
 console.log('Components loaded');
