@@ -10,7 +10,7 @@
   <body>
     <h1>Test</h1>
     <brightspace-accordion>
-      <script type="application/json">
+      <script type="application/json" id="brightspace-accordion-data">
         { "groupName": "accountabilities", "elements": [ 
         { "name": "ProductOwner", "label": "👨‍💻 Product Owner", "content": "<p>123</p>" },
         { "name": "Developers", "label": "👷👷🏽‍♀️ Developers", "content": "<p>456</p>" },
@@ -18,15 +18,8 @@
         ] }
       </script>
     </brightspace-accordion>
-    <brightspace-flipcard>
-      <script type="application/json">
-        { "elements": [ 
-        { "front": "<p>👨‍💻 Product Owner</p>", "back": "<p>123</p>" },
-        { "front": "<p>👷👷🏽‍♀️ Developers</p>", "back": "<p>456</p>" },
-        { "front": "<p>👩🏻‍🏫 Scrum Master</p>", "back": "<p>789</p>" },
-        { "front": "<p>Stakeholder</p>", "back": "<p>000</p>" }
-        ] }
-      </script>
+    <brightspace-flipcard data-content='{ "cards": [ { "front": "👨‍💻 Product Owner", "back": "123" },{ "front": "👷👷🏽‍♀️ Developers", "back": "456" },{ "front": "👩🏻‍🏫 Scrum Master", "back": "789" }] }'>
+      
     </brightspace-flipcard>
   </body>
 </html>

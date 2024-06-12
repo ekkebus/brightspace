@@ -1,6 +1,9 @@
 export default class BrightspaceFlipcard extends HTMLElement {
   shadowRoot;
-  jsonData;
+  jsonData = `
+  { "cards":  [ { "front": "Card 1", "back": "Back 1" },
+                { "front": "Card 2", "back": "Back 2" }
+              ]}`;
   style = `
   .container{
     display:flex;
@@ -26,7 +29,6 @@ export default class BrightspaceFlipcard extends HTMLElement {
     transform: rotateY(180deg);
   }
 
-  /* Position the front and back side */
   .flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
@@ -51,15 +53,22 @@ export default class BrightspaceFlipcard extends HTMLElement {
     this.shadowRoot = this.attachShadow({ mode: "open" });
   }
 
+  static get observedAttributes() {
+    return ["data-content"];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === "data-content") {
+      this.jsonData = JSON.parse(newValue);
+      this.render();
+    }
+  }
+
   connectedCallback() {
     this.applyTemplate();
   }
 
   applyTemplate() {
-    //get the JSON from the template body
-    this.jsonData = JSON.parse(this.children[0].innerHTML.trim());
-
-    //after the data has been loaded, render the HTML
     this.shadowRoot.innerHTML = this.render();
   }
 
@@ -67,18 +76,17 @@ export default class BrightspaceFlipcard extends HTMLElement {
     return `
     <style>${this.style}</style>
     <div class="container">
-        ${this.jsonData.elements
+        ${this.jsonData.cards
           .map(
             (i) =>
               `<div class="flip-card">
                 <div class="flip-card-inner">
-                  <div class="flip-card-front">${i.front}</div>
-                  <div class="flip-card-back">${i.back}</div>
+                  <div class="flip-card-front"><p>${i.front}</p></div>
+                  <div class="flip-card-back"><p>${i.back}</p></div>
                 </div>
               </div>`
           )
           .join("")}
-    </div>
-    `;
+    </div>`;
   }
 }
