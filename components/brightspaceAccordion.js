@@ -1,3 +1,5 @@
+import { Helper } from "../helper.js";
+
 export default class BrightspaceAccordion extends HTMLElement {
   shadowRoot;
   jsonData = `
@@ -79,8 +81,12 @@ button.accordion:after {
         ${this.jsonData.elements
           .map(
             (i) =>
-              `<button class="accordion ${this.jsonData.groupName}" data-tab-id="${i.id}" >${i.label}</button>
-                <div class="panel ${i.id}">${i.content}</div>`
+              `<button class="accordion ${
+                this.jsonData.groupName
+              }" data-tab-id="${i.id}" >${i.label}</button>
+                <div class="panel ${i.id}">${Helper.replaceTagsWithHtml(
+                i.content
+              )}</div>`
           )
           .join("")}
     </div>
@@ -88,7 +94,6 @@ button.accordion:after {
   }
 
   openAccordion(evt) {
-    //const tabName = evt.target.getAttribute("data-tab-id");
     //TODO check if class is empty
     [...this.shadowRoot.querySelectorAll(".accordion")].forEach((e) => {
       e.classList.remove("active");

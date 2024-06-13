@@ -1,3 +1,5 @@
+import { Helper } from "../helper.js";
+
 export default class BrightspaceFlipcard extends HTMLElement {
   shadowRoot;
   jsonData = `
@@ -8,14 +10,15 @@ export default class BrightspaceFlipcard extends HTMLElement {
   .container{
     display:flex;
     justify-content: space-evenly;
+    border:0px;
   }
   .flip-card {
     background-color: transparent;
     width: 300px;
     height: 300px;
     border: 1px solid #f1f1f1;
+    
   }
-
   .flip-card-inner {
     position: relative;
     width: 100%;
@@ -28,25 +31,26 @@ export default class BrightspaceFlipcard extends HTMLElement {
   .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
   }
-
   .flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1/1;  /*to make it square*/
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
   }
-
   .flip-card-front {
     background-color: #bbb;
     color: black;
   }
-
   .flip-card-back {
     background-color:  #444;
     color: white;
     transform: rotateY(180deg);
-  }`;
+  }
+  .contents{
+    padding: 20px 20px 20px 20px;
+  }
+  `;
 
   constructor() {
     super();
@@ -81,9 +85,14 @@ export default class BrightspaceFlipcard extends HTMLElement {
             (i) =>
               `<div class="flip-card">
                 <div class="flip-card-inner">
-                  <div class="flip-card-front"><p>${i.front}</p></div>
-                  <div class="flip-card-back"><p>${i.back}</p></div>
+                  <div class="flip-card-front"><div class="contents">${Helper.replaceTagsWithHtml(
+                    i.front
+                  )}</div></div>
+                  <div class="flip-card-back"><div class="contents">${Helper.replaceTagsWithHtml(
+                    i.back
+                  )}</div></div>
                 </div>
+                
               </div>`
           )
           .join("")}
