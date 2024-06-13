@@ -25,24 +25,24 @@ export default class BrightspaceAccordion extends HTMLElement {
     background-color: #ccc;
   }
 
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  display: none;
-  overflow: hidden;
-}
+  .panel {
+    padding: 20px 20px 20px 20px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+  }
 
-.active {
-  display: block;
-}
+  .active {
+    display: block;
+  }
 
-button.accordion:after {
-  content: "+";
-  color: #777;
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
-}`;
+  button.accordion:after {
+    content: "+";
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }`;
 
   constructor() {
     super();
