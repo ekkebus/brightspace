@@ -1,4 +1,5 @@
 import { Helper } from "../helper.js";
+import sharedStyles from '../sharedStyles.js';
 
 export default class BrightspaceFlipcard extends HTMLElement {
   shadowRoot;
@@ -16,7 +17,6 @@ export default class BrightspaceFlipcard extends HTMLElement {
     background-color: transparent;
     width: 300px;
     height: 300px;
-    border: 1px solid #f1f1f1;
     
   }
   .flip-card-inner {
@@ -39,11 +39,11 @@ export default class BrightspaceFlipcard extends HTMLElement {
     backface-visibility: hidden;
   }
   .flip-card-front {
-    background-color: #bbb;
+    background-color: var(--primary-color);
     color: black;
   }
   .flip-card-back {
-    background-color:  #444;
+    background-color:  var(--secondary-color);
     color: white;
     transform: rotateY(180deg);
   }
@@ -55,6 +55,7 @@ export default class BrightspaceFlipcard extends HTMLElement {
   constructor() {
     super();
     this.shadowRoot = this.attachShadow({ mode: "open" });
+    this.shadowRoot.adoptedStyleSheets = [sharedStyles];
   }
 
   static get observedAttributes() {

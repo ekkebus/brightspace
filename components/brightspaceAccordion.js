@@ -1,4 +1,5 @@
 import { Helper } from "../helper.js";
+import sharedStyles from '../sharedStyles.js';
 
 export default class BrightspaceAccordion extends HTMLElement {
   shadowRoot;
@@ -10,7 +11,7 @@ export default class BrightspaceAccordion extends HTMLElement {
    ] }`;
   style = `
   .accordion {
-    background-color: #eee;
+    background-color: var(--primary-color);
     color: #444;
     cursor: pointer;
     padding: 18px;
@@ -22,7 +23,7 @@ export default class BrightspaceAccordion extends HTMLElement {
   }
 
   .accordion.active,.accordion:hover {
-    background-color: #ccc;
+    background-color: var(--secondary-color);
   }
 
   .panel {
@@ -47,6 +48,7 @@ export default class BrightspaceAccordion extends HTMLElement {
   constructor() {
     super();
     this.shadowRoot = this.attachShadow({ mode: "open" });
+    this.shadowRoot.adoptedStyleSheets = [sharedStyles];
   }
 
   connectedCallback() {

@@ -10,11 +10,31 @@
   </head>
   <body>
     <h1>Test</h1>
-    <brightspace-accordion data-content='{ "groupName": "accountabilities", "elements": [ { "name": "ProductOwner", "label": "👨‍💻 Product Owner", "content": "youtube=PbgGTwUwvQE" },{ "name": "Developers", "label": "👷👷🏽‍♀️ Developers", "content": "De inhoud van deze video wijkt af van de meest recente versie van de  Scrum Guide.&lt;br&gt;youtube=6lix96d5RuI" },{ "name": "ScrumMaster", "label": "👩🏻‍🏫 Scrum Master", "content": "youtube=mibskQFloTM" }] }'>
+    <brightspace-accordion
+      data-content='{ "groupName": "accountabilities", "elements": [ { "name": "ProductOwner", "label": "👨‍💻 Product Owner", "content": "youtube=PbgGTwUwvQE" },{ "name": "Developers", "label": "👷👷🏽‍♀️ Developers", "content": "De inhoud van deze video wijkt af van de meest recente versie van de  Scrum Guide.&lt;br&gt;youtube=6lix96d5RuI" },{ "name": "ScrumMaster", "label": "👩🏻‍🏫 Scrum Master", "content": "youtube=mibskQFloTM" }] }'
+    >
     </brightspace-accordion>
-    <brightspace-flipcard data-content='{ "cards": [ { "front": "👨‍💻 Product Owner", "back": "123" },{ "front": "👷👷🏽‍♀️ Developers", "back": "456" },{ "front": "👩🏻‍🏫 Scrum Master", "back": "789" },{ "front": "👷👷🏽‍♀️ Developers", "back": "456" },{ "front": "👩🏻‍🏫 Scrum Master", "back": "789" }] }'>
+    <brightspace-flipcard
+      data-content='{ "cards": [ { "front": "📇&lt;br&gt;De Sprint Backlog", "back": "De Sprint Backlog geeft transparantie over de voortgang van de Developers t.o.v. het Sprint Doel." },{ "front": "👩🏻‍⚕️&lt;br&gt;De Sprint Retrospective", "back": "De Retrospective geeft transparantie over hoe hoe het Scrum Team samenwerkt. Transparantie is het startpunt van openheid." },{ "front": "✅&lt;br&gt;De Definition of Done", "back": "De Definition of Done geeft transparantie wanneer het Scrum team een Product Backlog Item done is." }] }'
+    >
     </brightspace-flipcard>
-    <brightspace-flipcard data-content='{ "cards": [ { "front": "📇&lt;br&gt;De Sprint Backlog", "back": "De Sprint Backlog geeft transparantie over de voortgang van de Developers t.o.v. het Sprint Doel." },{ "front": "👩🏻‍⚕️&lt;br&gt;De Sprint Retrospective", "back": "De Retrospective geeft transparantie over hoe hoe het Scrum Team samenwerkt. Transparantie is het startpunt van openheid." },{ "front": "✅&lt;br&gt;De Definition of Done", "back": "De Definition of Done geeft transparantie wanneer het Scrum team een Product Backlog Item done is." }] }'>
+
+    <brightspace-flipcard
+      data-content='{ "cards": [ { "front": "Sprint Planning", "back": "Het resultaat van de Sprint Retrospective, team capaciteit, de Definition of Done en de Product Backlog." },{ "front": "Daily Scrum", "back": "Voortgang op het Sprint Doel." },{ "front": "Sprint Review", "back": "Het “done” Increment, de Sprint en de Sprint Backlog." },{ "front": "Sprint Retrospective", "back": "Het team, de samenwerking, de gebruikte gereedschappen en de Definition of Done." }] }'
+    >
     </brightspace-flipcard>
+
+    
+
+    <script>
+      let json = { columns: [
+        { name: "Product Owner", cards: ["Verantwoordelijk voor Product Backlog management","Verantwoordelijk voor inhoud, beschikbaarheid en volgorde van Product Backlog","Verantwoordelijk voor voor Product release planning","Meet en monitort de feedback vanuit de markt","Geeft verduidelijking om de Developers afwegingen te laten maken","Verantwoordelijk voor stakeholder management","Verantwoordelijk voor het bijhouden van markt veranderingen.","Verantwoordelijk voor het kiezen wat het meest waardevolle is om te realiseren","Value Maximizer","Legt uit welke Product Backlog items zijn uitgevoerd tijdens de Sprint","Geeft inzicht het werk wat nog gedaan moet worden tijdens de Sprint Review.","Heeft de autoriteit om een Sprint te annuleren"] },
+        { name: "Scrum Master", cards: ["Verantwoordelijk voor het Scrum proces","Verantwoordelijk dat de Scrum Event plaatsvinden","Verantwoordelijk dat iedereen de Scrum Events en het doel begrijpen","Verantwoordelijk dat de Events in de time-box blijven","Verantwoordelijk voor de Team gezondheid en de Agile cultuur","Helpt bij het weghalen van blokkades (impedements)","Zorg dat het team de Scrum Artifacts begrijpt","Helpt iedereen buiten het Scrum Team hoe samen te werken met het team","Gericht op de behoeften van het hele team.","Verantwoordelijk voor de Scrum adoptie in de organisatie","Zorgt dat het team niet wordt afgeleid door zaken buiten het team","Coaching","Dienende leider"]},
+        { name: "Developers", cards: ["Eindverantwoordelijk voor de kwaliteit van het Product","Eindverantwoordelijk voor het uitvoeren van het werk tijdens de Sprint","Verantwoordelijk voor het opleveren van een (in potentie) releasebaar Increment","Verantwoordelijk voor het maken van een inschatting van de Product Backlog items","Verantwoordelijk voor het managen van eigen werk","Responsible for how best to accomplish their own work.","Verantwoordelijk voor het inspecteren van de haalbaarheid van het Sprint Doel","Verantwoordelijk voor het opstellen van de taken tijdens de Sprint.","Verantwoordelijk voor het selecteren van de gebruikte tools en processen","Verantwoordelijk voor de technische gezondheid van het product","Een zelforganiserend team"]},
+        { name: "Scrum Team", cards: ["Verantwoordelijk voor het verbeteren van het werkproces","Inspecteren hoe de afgelopen Sprint verliep m.b.t. de samenwerking","Het maken van een verbeterplan voor het uitvoeren van de volgende Sprint","Verantwoordelijk voor transparatie","Verantwoordelijk voor het verbeteren van de Definition of Done","Een zelfsturend team"]}
+    ] };
+    </script>
+
+    
   </body>
 </html>

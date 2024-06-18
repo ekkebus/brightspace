@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteer Activiteit</title>
+    <style>
+        .category {
+            border: 2px solid #000;
+            padding: 10px;
+            margin: 10px;
+            min-height: 200px;
+            width: 200px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .card {
+            padding: 10px;
+            border: 1px solid #000;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<sort-activity></sort-activity>
+
+<script>
+class SortActivity extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+
+        this.data = {
+            categories: [
+                { name: "Product Owner", cards: ["Verantwoordelijk voor Product Backlog management", "Verantwoordelijk voor inhoud, beschikbaarheid en volgorde van Product Backlog", "Verantwoordelijk voor voor Product release planning", "Meet en monitort de feedback vanuit de markt", "Geeft verduidelijking om de Developers afwegingen te laten maken", "Verantwoordelijk voor stakeholder management", "Verantwoordelijk voor het bijhouden van markt veranderingen.", "Verantwoordelijk voor het kiezen wat het meest waardevolle is om te realiseren", "Value Maximizer", "Legt uit welke Product Backlog items zijn uitgevoerd tijdens de Sprint", "Geeft inzicht het werk wat nog gedaan moet worden tijdens de Sprint Review.", "Heeft de autoriteit om een Sprint te annuleren"] },
+                { name: "Scrum Master", cards: ["Verantwoordelijk voor het Scrum proces", "Verantwoordelijk dat de Scrum Event plaatsvinden", "Verantwoordelijk dat iedereen de Scrum Events en het doel begrijpen", "Verantwoordelijk dat de Events in de time-box blijven", "Verantwoordelijk voor de Team gezondheid en de Agile cultuur", "Helpt bij het weghalen van blokkades (impedements)", "Zorg dat het team de Scrum Artifacts begrijpt", "Helpt iedereen buiten het Scrum Team hoe samen te werken met het team", "Gericht op de behoeften van het hele team.", "Verantwoordelijk voor de Scrum adoptie in de organisatie", "Zorgt dat het team niet wordt afgeleid door zaken buiten het team", "Coaching", "Dienende leider"]},
+                { name: "Developers", cards: ["Eindverantwoordelijk voor de kwaliteit van het Product", "Eindverantwoordelijk voor het uitvoeren van het werk tijdens de Sprint", "Verantwoordelijk voor het opleveren van een (in potentie) releasebaar Increment", "Verantwoordelijk voor het maken van een inschatting van de Product Backlog items", "Verantwoordelijk voor het managen van eigen werk", "Responsible for how best to accomplish their own work.", "Verantwoordelijk voor het inspecteren van de haalbaarheid van het Sprint Doel", "Verantwoordelijk voor het opstellen van de taken tijdens de Sprint.", "Verantwoordelijk voor het selecteren van de gebruikte tools en processen", "Verantwoordelijk voor de technische gezondheid van het product", "Een zelforganiserend team"]},
+                { name: "Scrum Team", cards: ["Verantwoordelijk voor het verbeteren van het werkproces", "Inspecteren hoe de afgelopen Sprint verliep m.b.t. de samenwerking", "Het maken van een verbeterplan voor het uitvoeren van de volgende Sprint", "Verantwoordelijk voor transparatie", "Verantwoordelijk voor het verbeteren van de Definition of Done", "Een zelfsturend team"]}
+            ]
+        };
+        
+        this.shadowRoot.innerHTML = `
+            <style>
+                .category {
+                    border: 2px solid #000;
+                    padding: 10px;
+                    margin: 10px;
+                    min-height: 200px;
+                    width: 200px;
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                .card {
+                    padding: 10px;
+                    border: 1px solid #000;
+                    margin: 5px;
+                    cursor: pointer;
+                    background-color: #fff;
+                }
+            </style>
+            <div id="cards-container"></div>
+            <div id="categories-container"></div>
+            <div id="feedback"></div>
+        `;
+    }
+
+    connectedCallback() {
+        this.render();
+        this.addEventListeners();
+    }
+
+    render() {
+        const cardsContainer = this.shadowRoot.getElementById('cards-container');
+        const categoriesContainer = this.shadowRoot.getElementById('categories-container');
+        
+        this.allCards = this.data.categories.flatMap(category => category.cards.map(card => ({ card, category: category.name })));
+        this.allCards = this.shuffle(this.allCards);
+
+        this.allCards.forEach(item => {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.draggable = true;
+            cardElement.textContent = item.card;
+            cardElement.dataset.category = item.category;
+            cardsContainer.appendChild(cardElement);
+        });
+
+        this.data.categories.forEach(category => {
+            const categoryElement = document.createElement('div');
+            categoryElement.classList.add('category');
+            categoryElement.textContent = category.name;
+            categoryElement.dataset.category = category.name;
+            categoriesContainer.appendChild(categoryElement);
+        });
+    }
+
+    addEventListeners() {
+        const cardsContainer = this.shadowRoot.getElementById('cards-container');
+        const cards = this.shadowRoot.querySelectorAll('.card');
+        const categories = this.shadowRoot.querySelectorAll('.category');
+        
+        cards.forEach(card => {
+            card.addEventListener('dragstart', this.handleDragStart.bind(this));
+        });
+
+        categories.forEach(category => {
+            category.addEventListener('dragover', this.handleDragOver.bind(this));
+            category.addEventListener('drop', this.handleDrop.bind(this));
+        });
+    }
+
+    handleDragStart(event) {
+        event.dataTransfer.setData('text', event.target.textContent);
+        event.dataTransfer.setData('category', event.target.dataset.category);
+        this.draggedCard = event.target;
+    }
+
+    handleDragOver(event) {
+        event.preventDefault();
+    }
+
+    handleDrop(event) {
+        event.preventDefault();
+        const droppedCategory = event.currentTarget.dataset.category;
+        const cardCategory = this.draggedCard.dataset.category;
+
+        if (droppedCategory === cardCategory) {
+            event.currentTarget.appendChild(this.draggedCard);
+            this.shadowRoot.getElementById('feedback').textContent = 'Correct!';
+        } else {
+            this.shadowRoot.getElementById('cards-container').appendChild(this.draggedCard);
+            this.shadowRoot.getElementById('feedback').textContent = 'Incorrect! Try again.';
+        }
+    }
+
+    shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+}
+
+customElements.define('sort-activity', SortActivity);
+</script>
+
+</body>
+</html>

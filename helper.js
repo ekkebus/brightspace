@@ -12,6 +12,7 @@ export class Helper {
 
     return input
       .replaceAll(imgRegex, imgTemplate)
-      .replaceAll(youtubeRegex, youtubeTemplate);
+      .replaceAll(youtubeRegex, youtubeTemplate)
+      .trim();
   }
 }
