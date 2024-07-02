@@ -17,7 +17,9 @@ export default class BrightspaceMatchGame extends HTMLElement {
   }
   button {
     width: 100%;
+    height: 80px;
     padding: 10px;
+    margin: 5px;
     font-size: 16px;
     cursor: pointer;
     border: 1px solid #ccc;
