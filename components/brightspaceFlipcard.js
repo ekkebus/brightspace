@@ -34,13 +34,12 @@ export default class BrightspaceFlipcard extends HTMLElement {
   .flip-card-front, .flip-card-back {
     position: absolute;
     width: 100%;
-    aspect-ratio: 1/1;  /*to make it square*/
-    -webkit-backface-visibility: hidden; /* Safari */
+    aspect-ratio: 1/1;                    /*to make it square*/
+    -webkit-backface-visibility: hidden;  /* Safari */
     backface-visibility: hidden;
   }
   .flip-card-front {
     background-color: var(--primary-color);
-    color: black;
   }
   .flip-card-back {
     background-color:  var(--secondary-color);
@@ -49,6 +48,16 @@ export default class BrightspaceFlipcard extends HTMLElement {
   }
   .contents{
     padding: 20px 20px 20px 20px;
+  }
+
+  .turn-symbol {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml,<svg fill="%23000000"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 214.367 214.367" xml:space="preserve"><path d="M202.403,95.22c0,46.312-33.237,85.002-77.109,93.484v25.663l-69.76-40l69.76-40v23.494c27.176-7.87,47.109-32.964,47.109-62.642c0-35.962-29.258-65.22-65.22-65.22s-65.22,29.258-65.22,65.22c0,9.686,2.068,19.001,6.148,27.688l-27.154,12.754c-5.968-12.707-8.994-26.313-8.994-40.441C11.964,42.716,54.68,0,107.184,0S202.403,42.716,202.403,95.22z"/></svg>') no-repeat center center;
+    background-size: contain;
   }
   `;
 
@@ -88,7 +97,9 @@ export default class BrightspaceFlipcard extends HTMLElement {
                 <div class="flip-card-inner">
                   <div class="flip-card-front"><div class="contents">${Helper.replaceTagsWithHtml(
                     i.front
-                  )}</div></div>
+                  )}</div>
+                  <div class="turn-symbol"></div>
+                  </div>
                   <div class="flip-card-back"><div class="contents">${Helper.replaceTagsWithHtml(
                     i.back
                   )}</div></div>

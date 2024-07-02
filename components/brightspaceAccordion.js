@@ -12,7 +12,7 @@ export default class BrightspaceAccordion extends HTMLElement {
   style = `
   .accordion {
     background-color: var(--primary-color);
-    color: #444;
+    color: var(--secondary-font-color);
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -23,7 +23,7 @@ export default class BrightspaceAccordion extends HTMLElement {
   }
 
   .accordion.active,.accordion:hover {
-    background-color: var(--secondary-color);
+    filter: brightness(85%);
   }
 
   .panel {
@@ -39,7 +39,7 @@ export default class BrightspaceAccordion extends HTMLElement {
 
   button.accordion:after {
     content: "+";
-    color: #777;
+    color: var(--secondary-font-color);
     font-weight: bold;
     float: right;
     margin-left: 5px;
